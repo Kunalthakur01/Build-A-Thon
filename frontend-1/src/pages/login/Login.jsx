@@ -34,11 +34,12 @@ function LoginPage() {
   return (
     <div className='login-container'>
       <h1>Sign-in to Your Account</h1>
-      { message && <h3 className='red'>{ message }</h3> }
       { err && <h3 className='red'>{ err }</h3> }
       <Form method='post' replace={ true } className='login-form'>
-          <input name='username' type='text' placeholder='Username'/>
-          <input name='password' type='password' placeholder='Password'/>
+          <input name='username' type='text' placeholder='Username'className='username-input'/>
+          <br/>
+          <input name='password' type='password' placeholder='Password'className='password-input'/>
+          <br/>
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Logging in...' : 'Login' }</button>
       </Form>
     </div>
