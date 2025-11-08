@@ -12,7 +12,17 @@ async function action({ request }) {
   const role = formData.get('role');
   try {
     const res = await axios.post('http://localhost:3000/api/v1/signup', { username, email, password, role });
-    console.log(res);
+    const data = res.data;
+    
+    if(data.user.role === 'doctor') {
+      localStorage.setItem('doctorToken', data.token);
+      return redirect('/doctor');
+    }
+
+    if (data.user.role === 'patient') {
+      localStorage.setItem('patientToken', data.token);
+      return redirect('/patient');
+    }
   } catch (err) {
     console.error(err);
     return err.message;
@@ -37,7 +47,7 @@ function SignupPage() {
           </select>
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Signing up...' : 'Signup' }</button>
       </Form>
-      <Link to='/' className='login-link'>Already have an account? Login</Link>
+      <Link to='/login' className='login-link'>Already have an account? Login</Link>
     </div>
   );
 }

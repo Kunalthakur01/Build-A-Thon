@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, redirect, useNavigation, useActionData } from 'react-router-dom';
+import { Form, redirect, useNavigation, useActionData, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './login.css';
@@ -42,6 +42,7 @@ function LoginPage() {
           <br/>
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Logging in...' : 'Login' }</button>
       </Form>
+      <Link to='/signup' className='login-link'>Dont have an account? Signup</Link>
     </div>
   );
 }
