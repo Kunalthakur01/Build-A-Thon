@@ -18,7 +18,7 @@
 import enum
 from typing import List, NamedTuple
 
-import numpy as np
+import numpy as np 
 
 
 class BodyPart(enum.Enum):
