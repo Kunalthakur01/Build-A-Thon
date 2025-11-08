@@ -11,7 +11,6 @@ async function action({ request }) {
   try {
     const res = await axios.post('http://localhost:3000/api/v1/login', { username, password });
     const data = res.data;
-    console.log(data);
 
     if(data.user.role === 'doctor') {
       localStorage.setItem('doctorToken', data.token);
