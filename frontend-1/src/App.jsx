@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom'
 
-import doctorAuthCheck from './components/doctorauth';
-import patientAuthCheck from './components/patientauth';
+import doctorAuthCheck from './components/middleware/doctorauth';
+import patientAuthCheck from './components/middleware/patientauth';
 
 import LoginPage from './pages/login/Login';
 import Signup from './pages/signup/Signup';

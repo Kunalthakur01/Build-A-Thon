@@ -1,7 +1,14 @@
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
 import { useRef, useState, useEffect } from 'react'
+// import backend from '@tensorflow/tfjs-backend-webgl'
 import Webcam from 'react-webcam' 
+import Instructions from '../../../components/instructions.jsx';
+ 
+import DropDown from '../../../components/dropdown.jsx';
+import { poseImages } from '../../../assets/pose_images';
+import { POINTS, keypointConnections } from '../../../assets/data';
+import { drawPoint, drawSegment } from '../../../assets/helper';
 
 let skeletonColor = 'rgb(255,255,255)'
 let poseList = [
@@ -210,32 +217,43 @@ function Yoga() {
           </div>
         <div>
           
-        <Webcam 
-            width='400px'
-            height='400px'
-            id="webcam"
-            ref={webcamRef}
+          <Webcam 
+          width='640px'
+          height='480px'
+          id="webcam"
+          ref={webcamRef}
+          style={{
+            position: 'absolute',
+            left: 120,
+            top: 100,
+            padding: '0px',
+          }}
+        />
+          <canvas
+            ref={canvasRef}
+            id="my-canvas"
+            width='640px'
+            height='480px'
             style={{
               position: 'absolute',
               left: 120,
               top: 100,
-              padding: '0px',
-            }}
-        />
-        <canvas ref={canvasRef} id="my-canvas" width='640px' height='480px' style={{
-            position: 'absolute',
-              left: 120,
-              top: 100,
               zIndex: 1
             }}
-        >
-        </canvas>
+          >
+          </canvas>
         <div>
-            
-        </div>
+            <img 
+              src={poseImages[currentPose]}
+              className="pose-img"
+            />
+          </div>
          
         </div>
-        <button onClick={stopPose} className="secondary-btn">Stop Pose</button>
+        <button
+          onClick={stopPose}
+          className="secondary-btn"    
+        >Stop Pose</button>
       </div>
     )
   }
@@ -244,10 +262,18 @@ function Yoga() {
     <div
       className="yoga-container"
     >
+      <DropDown
+        poseList={poseList}
+        currentPose={currentPose}
+        setCurrentPose={setCurrentPose}
+      />
+      <Instructions
+          currentPose={currentPose}
+        />
       <button
           onClick={startYoga}
           className="secondary-btn"    
-      >Start Pose</button>
+        >Start Pose</button>
     </div>
   )
 }
