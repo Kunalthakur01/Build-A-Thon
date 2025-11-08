@@ -33,9 +33,9 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
     try {
-        const { username, password, role } = req.body;
+        const { username, password, role, email } = req.body;
 
-        if(!username || !password) {
+        if(!username || !password || !email) {
             res.status(400).json({ message: 'please provide a username and a password' });
             return;
         }
@@ -47,10 +47,10 @@ const signup = async (req, res) => {
             return;
         }
 
-        const user = await User.create({ username, password, role });
+        const user = await User.create({ username, password, role, email });
         const token = user.createJWT();
 
-        res.status(200).json({ user: { username: user.username, role: user.role }, token });
+        res.status(200).json({ user: { username: user.username, role: user.role, email: user.email }, token });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal Server Error' });
