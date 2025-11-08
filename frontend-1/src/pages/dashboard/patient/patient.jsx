@@ -1,9 +1,10 @@
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
 import { useRef, useState, useEffect } from 'react'
-// import backend from '@tensorflow/tfjs-backend-webgl'
 import Webcam from 'react-webcam' 
 import Instructions from '../../../components/instructions.jsx';
+
+import './patient.css';
  
 import DropDown from '../../../components/dropdown.jsx';
 import { poseImages } from '../../../assets/pose_images';

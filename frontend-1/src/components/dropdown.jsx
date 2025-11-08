@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './dropdown.css';
+
 import { poseImages } from '../assets/pose_images'
 
 export default function DropDown({ poseList, currentPose, setCurrentPose }) {
