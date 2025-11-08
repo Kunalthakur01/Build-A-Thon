@@ -9,9 +9,9 @@ async function action({ request }) {
   const username = formData.get('username');
   const email = formData.get('email');
   const password = formData.get('password');
-  const pathname = new URL(request.url).searchParams.get('redirectTo') || '/host';
+  const role = formData.get('role');
   try {
-    const res = await axios.post('http://localhost:3000/api/v1/login', { username, email, password });
+    const res = await axios.post('http://localhost:3000/api/v1/signup', { username, email, password, role });
     console.log(res);
   } catch (err) {
     console.error(err);
@@ -33,6 +33,10 @@ function SignupPage() {
           <input name='username' type='text' placeholder='Username'/>
           <input name='email' type='email' placeholder='Email'/>
           <input name='password' type='password' placeholder='Password'/>
+          <select name="role">
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+          </select>
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Signing up...' : 'Signup' }</button>
       </Form>
     </div>
