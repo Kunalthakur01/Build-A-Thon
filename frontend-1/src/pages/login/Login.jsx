@@ -14,12 +14,12 @@ async function action({ request }) {
 
     if(data.user.role === 'doctor') {
       localStorage.setItem('doctorToken', data.token);
-      return redirect('/doctor/dashboard');
+      return redirect('/doctor');
     }
 
     if (data.user.role === 'patient') {
       localStorage.setItem('patientToken', data.token);
-      return redirect('/patient/dashboard');
+      return redirect('/patient');
     }
   } catch (err) {
     console.error(err);

@@ -1,18 +1,21 @@
+import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom'
+
+import doctorAuthCheck from './components/doctorauth';
+import patientAuthCheck from './components/patientauth';
+
 import LoginPage from './pages/login/Login';
 import Signup from './pages/signup/Signup';
+import PatientDash from './pages/dashboard/patient/patient';
+import DoctorDash from './pages/dashboard/doctor/doctor';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
     <Route path='/' element={<h1>Welcome to HealthCare App</h1>}/>
-    <Route path='/login' element={<LoginPage/>} action={ LoginPage.action }/>
-    <Route path='/signup' element={<Signup/>} action={ Signup.action }/>
-    <Route path='/doctor' element={<h1>Doctor Dashboard</h1>}>
-      <Route path='dashboard' element={<h1>Doctor Dashboard</h1>}/>
-    </Route>
-    <Route path='/patient' element={<h1>Patient Dashboard</h1>}>
-      <Route path='dashboard' element={<h1>Patient Dashboard</h1>}/>
-    </Route>
+    <Route path='/login' element={ <LoginPage/> } action={ LoginPage.action }/>
+    <Route path='/signup' element={ <Signup/> } action={ Signup.action }/>
+    <Route path='/doctor' element={ <DoctorDash/> } loader={ doctorAuthCheck }/>
+    <Route path='/patient' element={ <PatientDash/> } loader={ patientAuthCheck }/>
   </>
 ));
 
