@@ -177,6 +177,11 @@ function Yoga() {
 
             const poseClassifier = await tf.loadLayersModel('https://models.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json');
             console.log('Pose classifier model loaded successfully');
+            
+            // Warm up the model with a dummy prediction
+            const dummyData = tf.zeros([1, 34]);
+            const warmup = await poseClassifier.predict(dummyData).array();
+            console.log('Model warmed up, sample prediction:', warmup);
 
             interval = setInterval(() => {
                 detectPose(detector, poseClassifier);
@@ -200,46 +205,54 @@ function Yoga() {
                     // Convert keypoints to input format for classifier
                     const keypoints = pose[0].keypoints;
                     const keypointsArray = keypoints.map(point => [point.x, point.y]);
-                    
-                    // Log keypoints for debugging
-                    console.log('Keypoints detected:', keypointsArray.length);
-                    
-                    // Process input for classification
                     const processedInput = landmarks_to_embedding(keypointsArray);
-                    console.log('Processed input shape:', processedInput.shape);
                     
                     // Get pose prediction
-                    const predictions = await poseClassifier.predict(processedInput).array();
-                    console.log('Raw predictions:', predictions[0]);
-                    
+                    const prediction = await poseClassifier.predict(processedInput).array();
                     const classNo = CLASS_NO[currentPose];
-                    const confidence = predictions[0][classNo];
-                    console.log('Current pose:', currentPose, 'Class number:', classNo, 'Confidence:', confidence);
+                    const confidence = prediction[0][classNo];
                     
-                    // Lower threshold for testing
-                    const isCorrect = confidence > 0.4;
+                    // Log all prediction values to understand the model's behavior
+                    console.log('All predictions:', prediction[0]);
+                    console.log('Current pose:', currentPose, 'class number:', classNo);
+                    console.log('Confidence for current pose:', confidence);
+                    
+                    // Log all prediction scores to find the highest confidence pose
+                    const allPredictions = prediction[0];
+                    const maxConfidence = Math.max(...allPredictions);
+                    const predictedClass = allPredictions.indexOf(maxConfidence);
+                    
+                    console.log('Detailed predictions:');
+                    poseList.forEach((pose, index) => {
+                        console.log(`${pose}: ${allPredictions[CLASS_NO[pose]]}`);
+                    });
+                    console.log('Highest confidence:', maxConfidence, 'for class:', predictedClass);
+                    
+                    // Use much lower threshold due to model output range
+                    const baseThreshold = 0.001; // Adjusted for the actual confidence values
+                    const timeHeldThreshold = flag ? 0.0015 : baseThreshold;
+                    
+                    const isCorrect = confidence > timeHeldThreshold;
                     setIsPoseCorrect(isCorrect);
                     
                     // Update timer and color based on pose correctness
                     const currentTimeStamp = new Date(Date.now()).getTime();
                     if (isCorrect) {
-                        console.log('Pose is correct! Confidence:', confidence);
+                        console.log('Pose detected correctly! Confidence:', confidence);
                         skeletonColor = correctPoseColor;
                         
                         if (!flag) {
-                            console.log('Starting timer for correct pose...');
+                            console.log('Starting timer...');
                             setStartingTime(currentTimeStamp);
                             flag = true;
                         }
                         setCurrentTime(currentTimeStamp);
                     } else {
-                        console.log('Pose is incorrect. Confidence:', confidence);
-                        skeletonColor = 'rgb(255,255,255)';
-                        
                         if (flag) {
-                            console.log('Pose lost, resetting timer...');
+                            console.log('Pose lost. Confidence too low:', confidence);
                             flag = false;
                         }
+                        skeletonColor = 'rgb(255,255,255)';
                     }
                     
                     // Draw canvas with current pose state
@@ -258,21 +271,20 @@ function Yoga() {
 
         // Set the color based on pose correctness
         const currentColor = isCorrect ? correctPoseColor : skeletonColor;
-        console.log('Drawing with color:', currentColor, 'isCorrect:', isCorrect, 'skeletonColor:', skeletonColor);
-
+        
         try {
-            // Draw keypoints
-            let visibleKeypoints = 0;
+            // Draw keypoints with larger size and enhanced visibility
             pose.keypoints.forEach(keypoint => {
                 if (keypoint.score > 0.4) {
-                    drawPoint(ctx, keypoint.x, keypoint.y, 8, currentColor);
-                    visibleKeypoints++;
+                    // Add glow effect
+                    ctx.shadowColor = currentColor;
+                    ctx.shadowBlur = 15;
+                    drawPoint(ctx, keypoint.x, keypoint.y, 10, currentColor);
+                    ctx.shadowBlur = 0;
                 }
             });
-            console.log('Visible keypoints drawn:', visibleKeypoints);
 
             // Draw skeleton
-            let visibleConnections = 0;
             connectedParts.forEach(([firstPart, secondPart]) => {
                 const firstPointIndex = POINTS[firstPart];
                 const secondPointIndex = POINTS[secondPart];
@@ -280,18 +292,15 @@ function Yoga() {
                 const firstKeypoint = pose.keypoints[firstPointIndex];
                 const secondKeypoint = pose.keypoints[secondPointIndex];
 
-                if (firstKeypoint && secondKeypoint && 
-                    firstKeypoint.score > 0.4 && secondKeypoint.score > 0.4) {
+                if (firstKeypoint.score > 0.4 && secondKeypoint.score > 0.4) {
                     drawSegment(
                         ctx,
                         [firstKeypoint.x, firstKeypoint.y],
                         [secondKeypoint.x, secondKeypoint.y],
                         currentColor
                     );
-                    visibleConnections++;
                 }
             });
-            console.log('Visible connections drawn:', visibleConnections);
         } catch (error) {
             console.error('Error drawing canvas:', error);
         }
