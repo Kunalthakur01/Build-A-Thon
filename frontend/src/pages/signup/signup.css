@@ -63,12 +63,12 @@
     transition: ease-in-out 0.25s;
 }
 
-.signup-link {
+.login-link {
     color: white;
     text-decoration: none;
     margin-top: 10px;
 }
 
-.signup-link:hover {
+.login-link:hover {
     text-decoration: underline;
 }

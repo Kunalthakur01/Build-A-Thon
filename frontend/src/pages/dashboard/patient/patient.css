@@ -32,7 +32,7 @@
 }
 
 .logout-btn {
-    background-color: #ff6b00;
+    background-color: #8351e8;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -44,7 +44,7 @@
 }
 
 .logout-btn:hover {
-    background-color: #ff8533;
+    background-color: #481aa3;
     transform: translateY(-2px);
 }
 
@@ -135,7 +135,7 @@
 }
 
 .start-btn {
-    background-color: #ff6b00;
+    background-color: #8351e8;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -149,7 +149,7 @@
 }
 
 .start-btn:hover {
-    background-color: #ff8533;
+    background-color: #4d269b;
     transform: translateY(-2px);
 }
 
@@ -159,7 +159,7 @@
     top: 20px;
     width: 200px;
     border-radius: 12px;
-    border: 2px solid #ff6b00;
+    border: 2px solid #8351e8;
 }
 
 #webcam {

@@ -21,7 +21,7 @@
 }
 
 .logout-btn {
-    background-color: #ff6b00;
+    background-color: #8351e8;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -33,7 +33,7 @@
 }
 
 .logout-btn:hover {
-    background-color: #ff8533;
+    background-color: #5126a9;
     transform: translateY(-2px);
 }
 
@@ -70,7 +70,7 @@
 .stat-card h3 {
     font-size: 28px;
     margin: 8px 0;
-    color: #ff6b00;
+    color: #8351e8;
 }
 
 .stat-card p {
@@ -96,7 +96,7 @@
 
 .filter-select:focus {
     outline: none;
-    border-color: #ff6b00;
+    border-color: #8351e8;
 }
 
 .patient-list {
@@ -168,7 +168,7 @@
 }
 
 .stat span {
-    color: #ff6b00;
+    color: #8351e8;
     font-size: 16px;
     font-weight: 500;
 }
@@ -178,7 +178,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #ff6b00;
+    color: #8351e8;
     font-size: 20px;
 }
 
@@ -187,7 +187,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #ff3333;
+    color: #8351e8;
     font-size: 18px;
     text-align: center;
     padding: 20px;
@@ -200,7 +200,7 @@
 }
 
 .patient-actions button {
-    background-color: #ff6b00;
+    background-color: #8351e8;
     color: white;
     border: none;
     padding: 6px 12px;
@@ -211,7 +211,7 @@
 }
 
 .patient-actions button:hover {
-    background-color: #ff8533;
+    background-color: #492395;
 }
 
 .patient-progress {
@@ -224,7 +224,7 @@
 
 .progress-bar {
     height: 100%;
-    background-color: #ff6b00;
+    background-color: #8351e8;
     border-radius: 3px;
     transition: width 0.3s ease;
 }
@@ -251,5 +251,5 @@
 }
 
 .filter-select:hover {
-    border-color: #ff6b00;
+    border-color: #471d9c;
 }

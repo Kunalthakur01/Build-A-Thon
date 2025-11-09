@@ -5,6 +5,8 @@ const cors = require('cors');
 const rateLimiter = require('express-rate-limit');
 const connectDB = require('./database/database');
 const login = require('./routes/login');
+const sessions = require('./routes/sessions');
+const doctor = require('./routes/doctor');
 
 const express = require('express');
 const app = express();
@@ -27,6 +29,8 @@ app.use(
 app.use(express.json());
 
 app.use('/api/v1', login);
+app.use('/api/v1/sessions', sessions);
+app.use('/api/v1/doctor', doctor);
 
 
 const port = process.env.PORT || 3000;

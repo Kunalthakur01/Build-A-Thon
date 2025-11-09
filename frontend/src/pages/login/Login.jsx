@@ -44,7 +44,8 @@ function LoginPage() {
           <br/>
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Logging in...' : 'Login' }</button>
       </Form>
-      <Link to='/signup' className='login-link'>Dont have an account? Signup</Link>
+      <Link to='/signup' className='signup-link'>Dont have an account? Signup</Link>
+      <Link to='/' className='home-link'>Back to Home</Link>
     </div>
   );
 }

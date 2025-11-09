@@ -48,6 +48,7 @@ function SignupPage() {
           <button disabled={ status === 'submitting' }>{ status === 'submitting' ? 'Signing up...' : 'Signup' }</button>
       </Form>
       <Link to='/login' className='login-link'>Already have an account? Login</Link>
+      <Link to='/' className='home-link'>Back to Home</Link>
     </div>
   );
 }
