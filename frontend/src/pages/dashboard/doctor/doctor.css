@@ -1,0 +1,255 @@
+.doctor-dash {
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    color: white;
+}
+
+.doctor-nav {
+    background-color: #1a1a1a;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #2a2a2a;
+}
+
+.doctor-nav h2 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff8533;
+    transform: translateY(-2px);
+}
+
+.dashboard-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-card {
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.stat-card {
+    background-color: #333;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    margin: 8px 0;
+    color: #ff6b00;
+}
+
+.stat-card p {
+    color: #999;
+    margin: 0;
+    font-size: 14px;
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.filter-select {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #ff6b00;
+}
+
+.patient-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.patient-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.patient-list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.patient-list::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.patient-card {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.patient-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.patient-info h4 {
+    margin: 0 0 8px 0;
+    color: white;
+    font-size: 18px;
+}
+
+.patient-info p {
+    color: #999;
+    margin: 0;
+    font-size: 14px;
+}
+
+.patient-stats {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.stat {
+    text-align: center;
+    padding: 8px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+}
+
+.stat label {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.stat span {
+    color: #ff6b00;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ff6b00;
+    font-size: 20px;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ff3333;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+}
+
+.patient-info p {
+    margin: 0;
+    color: #999;
+    font-size: 14px;
+}
+
+.patient-actions button {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 15px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.patient-actions button:hover {
+    background-color: #ff8533;
+}
+
+.patient-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #3a3a3a;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #ff6b00;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.chart-container {
+    height: 300px;
+    margin-top: 16px;
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.filter-select {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 8px 16px;
+    border: 2px solid #3a3a3a;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    border-color: #ff6b00;
+}
