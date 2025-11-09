@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import './instructions.css';
+
 import { poseInstructions } from '../assets/data'
 
 import { poseImages } from '../assets/pose_images'

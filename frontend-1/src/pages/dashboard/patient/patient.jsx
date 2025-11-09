@@ -260,22 +260,37 @@ function Yoga() {
   }
 
   return (
-    <div
-      className="yoga-container"
-    >
-      <DropDown
-        poseList={poseList}
-        currentPose={currentPose}
-        setCurrentPose={setCurrentPose}
-      />
-      <Instructions
+    <>
+      <nav className="yoga-nav">
+        <h2>Yoga Pose Practice</h2>
+        <button
+          className='logout-btn'
+          onClick={() => {
+            try {
+              localStorage.removeItem('patientToken');
+            } finally {
+              window.location.href = '/login'
+            }
+          }}
+        >
+          Logout
+        </button>
+      </nav>
+      <div className="yoga-container">
+        <DropDown
+          poseList={poseList}
           currentPose={currentPose}
+          setCurrentPose={setCurrentPose}
         />
-      <button
-          onClick={startYoga}
-          className="secondary-btn"    
-        >Start Pose</button>
-    </div>
+        <Instructions
+            currentPose={currentPose}
+          />
+        <button
+            onClick={startYoga}
+            className="secondary-btn"    
+          >Start Pose</button>
+      </div>
+    </>
   )
 }
 

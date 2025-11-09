@@ -14,8 +14,4 @@ export const poseImages = {
     Chair: chair,
     Traingle: traingle,
     Shoulderstand: shoulderstand
-} 
-
-
-
- 
+}

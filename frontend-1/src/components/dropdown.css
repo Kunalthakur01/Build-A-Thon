@@ -1,55 +1,48 @@
-#pose-dropdown-btn:hover {
-    border-color: white;
-}
-/* #pose-dropdown-btn:active {
-    background-color: white;
-} */
-#pose-dropdown-btn {
-    width: 400px;
-}
-
-
-
 .dropdown-container {
     display: flex;
-    justify-content: center;
-}
-#pose-dropdown-btn:focus {
-    background-color: white;
-    color: black;
-    box-shadow: none;
-}
-#pose-dropdown-btn:focus-within {
-    border-color: white;
-}
-.dropdown-option {
-    background: url('../../utils/pose_images/chair.png');
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
 
-.dropdown-custom-menu {
-    overflow: scroll;
-    height: 40vh;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    overflow: -moz-scrollbars-none;  /* Old Firefox */
+.pose-select {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 12px 24px;
+    border: 2px solid #8351e8;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    min-width: 200px;
+    text-align: center;
 }
 
-.dropdown-custom-menu::-webkit-scrollbar {
-    display: none;
+.pose-select:hover {
+    background-color: #3a3a3a;
+    border-color: #471b9d;
 }
 
-.dropdown-item-container {
-    width: 400px;
+.selected-pose-preview {
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    border-radius: 4px;
     justify-content: center;
     align-items: center;
 }
 
-.dropdown-item-1 {
-    margin: 10px;
-}
 .dropdown-img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+/* Style the select options */
+.pose-select option {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 12px;
 }
