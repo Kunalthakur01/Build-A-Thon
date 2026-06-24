@@ -44,7 +44,7 @@ Goal: Deliver a working MVP that solves a real user problem using clean architec
 ---
 
 ## 📁 Project Structure
-
+```
 Build-A-Thon/
 │── frontend/
 │── backend/
@@ -52,7 +52,7 @@ Build-A-Thon/
 │── .gitignore
 │── README.md
 
-
+```
 
 
 ---
