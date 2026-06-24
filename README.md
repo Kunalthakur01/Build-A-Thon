@@ -102,14 +102,7 @@ git commit -m "Add new feature"
 git push origin feature/new-feature
 Create Pull Request
 
-📄 License
-java
-Copy code
-MIT License
-Copyright (c) 2025 Kunal Singh
-📬 Contact
-Project Link:
-https://github.com/Kunalthakur01/Build-A-Thon
+
 
 
 
